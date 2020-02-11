@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CarServiceApp
 {
-    class EmployeeHelper
+    public class EmployeeHelper
     {
         public static void InsertEmployeeInfo(SqlHelper helper, Employee employee)
         {

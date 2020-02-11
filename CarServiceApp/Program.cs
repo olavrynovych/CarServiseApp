@@ -9,15 +9,14 @@ using System.Threading.Tasks;
 
 namespace CarServiceApp
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            //for testing purpoces
-            var dbManager = new SqlHelper(ConfigurationManager.ConnectionStrings["connectionStringCarService"].ToString());
-            //var res = dbManager.GetDataSet("select * from [Car_Service].[dbo].[Customers]", System.Data.CommandType.Text);
-            ClientHelper.InsertClientInfo(dbManager, new Client { FirstName = "Nick", LastName ="Petrov", CellPhone="123456", Description="some details"});
-            EmployeeHelper.InsertEmployeeInfo(dbManager, new Employee { FirstName = "Myckolay", LastName = "Pet", Phone = "123456", Description = "some details" });
-        }
-    }
+    //class Program
+    //{
+    //    static void Main(string[] args)
+    //    {
+    //        //for testing purpoces
+    //        var dbManager = new SqlHelper(ConfigurationManager.ConnectionStrings["connectionStringCarService"].ToString());
+    //        //ClientHelper.InsertClientInfo(dbManager, new Client { FirstName = "Nick", LastName ="Petrov", CellPhone="123456", Description="some details"});
+    //        //EmployeeHelper.InsertEmployeeInfo(dbManager, new Employee { FirstName = "Myckolay", LastName = "Pet", Phone = "123456", Description = "some details" });
+    //    }
+    //}
 }
