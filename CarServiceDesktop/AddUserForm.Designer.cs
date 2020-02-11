@@ -1,6 +1,10 @@
-﻿namespace CarServiceDesktop
+﻿using CarServiceApp;
+using CarServiceApp.Models;
+using System;
+
+namespace CarServiceDesktop
 {
-    partial class Form1
+    partial class AddUserForm
     {
         /// <summary>
         /// Required designer variable.
@@ -20,6 +24,36 @@
             base.Dispose(disposing);
         }
 
+        private void CreateUser_button_Click(object sender, EventArgs e)
+        {
+            var clientInfo = new Client
+            {
+                FirstName = Name_textbox.Text,
+                LastName = Surnname_textbox.Text,
+                CellPhone = Phone_textbox.Text,
+                Description = Details_textbox.Text
+            };
+            ;
+            if (ClientValidator.IsValidClientInfo(clientInfo))
+            {
+                ClientHelper.InsertClientInfo(clientInfo);
+                ClearForm();
+                //show some notification to user
+            }
+            else
+            {
+                //MessageBox.Show("Customer ID was not returned. Account could not be created.");
+            }
+        }
+
+        private void ClearForm()
+        {
+            Name_textbox.Clear();
+            Surnname_textbox.Clear();
+            Phone_textbox.Clear();
+            Details_textbox.Clear();
+        }
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -33,10 +67,10 @@
             this.Surnname_textbox = new System.Windows.Forms.TextBox();
             this.Phone_textbox = new System.Windows.Forms.TextBox();
             this.Details_textbox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.label_name = new System.Windows.Forms.Label();
+            this.label_surname = new System.Windows.Forms.Label();
+            this.label_phone = new System.Windows.Forms.Label();
+            this.label_details = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CreateUser_button
@@ -47,6 +81,7 @@
             this.CreateUser_button.TabIndex = 0;
             this.CreateUser_button.Text = "Create User";
             this.CreateUser_button.UseVisualStyleBackColor = true;
+            this.CreateUser_button.Click += new EventHandler(CreateUser_button_Click);
             // 
             // Name_textbox
             // 
@@ -77,57 +112,57 @@
             this.Details_textbox.Size = new System.Drawing.Size(166, 95);
             this.Details_textbox.TabIndex = 4;
             // 
-            // label1
+            // label_name
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(86, 89);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Name";
+            this.label_name.AutoSize = true;
+            this.label_name.Location = new System.Drawing.Point(100, 90);
+            this.label_name.Name = "label_name";
+            this.label_name.Size = new System.Drawing.Size(38, 13);
+            this.label_name.TabIndex = 5;
+            this.label_name.Text = "Name:";
             // 
-            // label2
+            // label_surname
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(86, 145);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Surname";
+            this.label_surname.AutoSize = true;
+            this.label_surname.Location = new System.Drawing.Point(86, 145);
+            this.label_surname.Name = "label_surname";
+            this.label_surname.Size = new System.Drawing.Size(52, 13);
+            this.label_surname.TabIndex = 6;
+            this.label_surname.Text = "Surname:";
             // 
-            // label3
+            // label_phone
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(86, 202);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Phone";
+            this.label_phone.AutoSize = true;
+            this.label_phone.Location = new System.Drawing.Point(97, 202);
+            this.label_phone.Name = "label_phone";
+            this.label_phone.Size = new System.Drawing.Size(41, 13);
+            this.label_phone.TabIndex = 7;
+            this.label_phone.Text = "Phone:";
             // 
-            // label4
+            // label_details
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(86, 248);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(39, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Details";
+            this.label_details.AutoSize = true;
+            this.label_details.Location = new System.Drawing.Point(96, 248);
+            this.label_details.Name = "label_details";
+            this.label_details.Size = new System.Drawing.Size(42, 13);
+            this.label_details.TabIndex = 8;
+            this.label_details.Text = "Details:";
             // 
-            // Form1
+            // AddUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label_details);
+            this.Controls.Add(this.label_phone);
+            this.Controls.Add(this.label_surname);
+            this.Controls.Add(this.label_name);
             this.Controls.Add(this.Details_textbox);
             this.Controls.Add(this.Phone_textbox);
             this.Controls.Add(this.Surnname_textbox);
             this.Controls.Add(this.Name_textbox);
             this.Controls.Add(this.CreateUser_button);
-            this.Name = "Form1";
+            this.Name = "AddUserForm";
             this.Text = "Add User";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -141,10 +176,10 @@
         private System.Windows.Forms.TextBox Surnname_textbox;
         private System.Windows.Forms.TextBox Phone_textbox;
         private System.Windows.Forms.TextBox Details_textbox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label_name;
+        private System.Windows.Forms.Label label_surname;
+        private System.Windows.Forms.Label label_phone;
+        private System.Windows.Forms.Label label_details;
     }
 }
 

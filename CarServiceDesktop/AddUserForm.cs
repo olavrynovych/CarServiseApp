@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace CarServiceDesktop
 {
-    public partial class Form1 : Form
+    public partial class AddUserForm : Form
     {
-        public Form1()
+        public AddUserForm()
         {
             InitializeComponent();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
