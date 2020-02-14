@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace CarServiceApp
@@ -11,8 +12,64 @@ namespace CarServiceApp
     {
         public static bool IsValidClientInfo(Client client)
         {
+            if (!ValidateFirstOrSecondName(client.FirstName))
+            {
+                return false;
+            }
+            if (!ValidateFirstOrSecondName(client.LastName))
+            {
+                return false;
+            }
+            if (!ValidatePhoneNumber(client.CellPhone, true))
+            {
+                return false;
+            }
+
             return true;
-            //throw new NotImplementedException();
+        }
+
+        public static bool ValidateFirstOrSecondName(string name)
+        {
+            if (name.Equals(string.Empty) || name.Length < 3)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public static bool ValidatePhoneNumber(string phone, bool IsRequired)
+        {
+            if (string.IsNullOrEmpty(phone) & !IsRequired)
+                return true;
+
+            if (string.IsNullOrEmpty(phone) & IsRequired)
+                return false;
+
+            var cleaned = RemoveNonNumeric(phone);
+            if (IsRequired)
+            {
+                if (cleaned.Length == 10)
+                    return true;
+                else
+                    return false;
+            }
+            else
+            {
+                if (cleaned.Length == 0)
+                    return true;
+                else if (cleaned.Length > 0 & cleaned.Length < 10)
+                    return false;
+                else if (cleaned.Length == 10)
+                    return true;
+                else
+                    return false; // should never get here
+            }
+        }
+
+        private static string RemoveNonNumeric(string phone)
+        {
+            return Regex.Replace(phone, @"[^0-9]+", "");
         }
     }
 }

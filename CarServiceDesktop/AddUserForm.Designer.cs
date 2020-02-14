@@ -1,6 +1,7 @@
 ﻿using CarServiceApp;
 using CarServiceApp.Models;
 using System;
+using System.Threading;
 
 namespace CarServiceDesktop
 {
@@ -34,18 +35,37 @@ namespace CarServiceDesktop
                 Description = Details_textbox.Text
             };
             ;
+            if (!ClientValidator.ValidateFirstOrSecondName(clientInfo.FirstName))
+            {
+                errorProvider1.SetError(Name_textbox, "Name is not correct.");//rename
+            }
+            if (!ClientValidator.ValidateFirstOrSecondName(clientInfo.LastName))
+            {
+                errorProvider2.SetError(Surnname_textbox, "Second name is not correct.");
+            }
+            if (!ClientValidator.ValidatePhoneNumber(clientInfo.CellPhone, true))
+            {
+                errorProvider3.SetError(Phone_textbox, $"Phone number is not correct.{Environment.NewLine}It should contain 10 digits.");
+            }
             if (ClientValidator.IsValidClientInfo(clientInfo))
             {
                 ClientHelper.InsertClientInfo(clientInfo);
                 ClearForm();
-                //show some notification to user
-            }
-            else
-            {
-                //MessageBox.Show("Customer ID was not returned. Account could not be created.");
+                MessageLabel.Show();
+                MessageLabel.Text = "Client info was successfully saved!";
+                //Thread.Sleep(2000);//queeck dummy way))) TODO: change!
+                //MessageLabel.Text = string.Empty;
             }
         }
 
+        private void ClearForm_button_Click(object sender, EventArgs e)
+        {
+            ClearForm();
+            errorProvider1.Clear();
+            errorProvider2.Clear();
+            errorProvider3.Clear();
+            MessageLabel.Hide();
+        }
         private void ClearForm()
         {
             Name_textbox.Clear();
@@ -62,6 +82,7 @@ namespace CarServiceDesktop
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.CreateUser_button = new System.Windows.Forms.Button();
             this.Name_textbox = new System.Windows.Forms.TextBox();
             this.Surnname_textbox = new System.Windows.Forms.TextBox();
@@ -71,6 +92,14 @@ namespace CarServiceDesktop
             this.label_surname = new System.Windows.Forms.Label();
             this.label_phone = new System.Windows.Forms.Label();
             this.label_details = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.MessageLabel = new System.Windows.Forms.Label();
+            this.ClearFormButton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
             this.SuspendLayout();
             // 
             // CreateUser_button
@@ -81,7 +110,7 @@ namespace CarServiceDesktop
             this.CreateUser_button.TabIndex = 0;
             this.CreateUser_button.Text = "Create User";
             this.CreateUser_button.UseVisualStyleBackColor = true;
-            this.CreateUser_button.Click += new EventHandler(CreateUser_button_Click);
+            this.CreateUser_button.Click += new System.EventHandler(this.CreateUser_button_Click);
             // 
             // Name_textbox
             // 
@@ -148,11 +177,47 @@ namespace CarServiceDesktop
             this.label_details.TabIndex = 8;
             this.label_details.Text = "Details:";
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // errorProvider2
+            // 
+            this.errorProvider2.ContainerControl = this;
+            // 
+            // errorProvider3
+            // 
+            this.errorProvider3.ContainerControl = this;
+            // 
+            // MessageLabel
+            // 
+            this.MessageLabel.AutoSize = true;
+            this.MessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.MessageLabel.ForeColor = System.Drawing.Color.ForestGreen;
+            this.MessageLabel.Location = new System.Drawing.Point(113, 369);
+            this.MessageLabel.Name = "MessageLabel";
+            this.MessageLabel.Size = new System.Drawing.Size(205, 13);
+            this.MessageLabel.TabIndex = 9;
+            this.MessageLabel.Text = "Client info was successfully saved!";
+            this.MessageLabel.Visible = false;
+            // 
+            // ClearFormButton
+            // 
+            this.ClearFormButton.Location = new System.Drawing.Point(152, 393);
+            this.ClearFormButton.Name = "ClearFormButton";
+            this.ClearFormButton.Size = new System.Drawing.Size(75, 23);
+            this.ClearFormButton.TabIndex = 10;
+            this.ClearFormButton.Text = "Clear Form";
+            this.ClearFormButton.UseVisualStyleBackColor = true;
+            this.ClearFormButton.Click += new System.EventHandler(this.ClearForm_button_Click);
+            // 
             // AddUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(372, 448);
+            this.Controls.Add(this.ClearFormButton);
+            this.Controls.Add(this.MessageLabel);
             this.Controls.Add(this.label_details);
             this.Controls.Add(this.label_phone);
             this.Controls.Add(this.label_surname);
@@ -164,6 +229,9 @@ namespace CarServiceDesktop
             this.Controls.Add(this.CreateUser_button);
             this.Name = "AddUserForm";
             this.Text = "Add User";
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -180,6 +248,11 @@ namespace CarServiceDesktop
         private System.Windows.Forms.Label label_surname;
         private System.Windows.Forms.Label label_phone;
         private System.Windows.Forms.Label label_details;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider errorProvider2;
+        private System.Windows.Forms.ErrorProvider errorProvider3;
+        private System.Windows.Forms.Label MessageLabel;
+        private System.Windows.Forms.Button ClearFormButton;
     }
 }
 

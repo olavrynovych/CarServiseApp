@@ -27,5 +27,12 @@ namespace CarServiceApp
 
             Console.WriteLine($"INSERTED ID: {lastId}.");
         }
+
+        public static void DeleteClient(Client client)
+        {
+            throw new NotImplementedException();
+        }
+
+        //update
     }
 }
