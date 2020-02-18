@@ -16,7 +16,7 @@ namespace CarServiceDesktop
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AddUserForm());
+            Application.Run(new MainForm());
         }
     }
 }

@@ -37,15 +37,15 @@ namespace CarServiceDesktop
             ;
             if (!ClientValidator.ValidateFirstOrSecondName(clientInfo.FirstName))
             {
-                errorProvider1.SetError(Name_textbox, "Name is not correct.");//rename
+                NameErrorProvider.SetError(Name_textbox, "Name is not correct.");//rename
             }
             if (!ClientValidator.ValidateFirstOrSecondName(clientInfo.LastName))
             {
-                errorProvider2.SetError(Surnname_textbox, "Second name is not correct.");
+                SecondNameErrorProvider.SetError(Surnname_textbox, "Second name is not correct.");
             }
             if (!ClientValidator.ValidatePhoneNumber(clientInfo.CellPhone, true))
             {
-                errorProvider3.SetError(Phone_textbox, $"Phone number is not correct.{Environment.NewLine}It should contain 10 digits.");
+                PhoneNumberErrorProvider.SetError(Phone_textbox, $"Phone number is not correct.{Environment.NewLine}It should contain 10 digits.");
             }
             if (ClientValidator.IsValidClientInfo(clientInfo))
             {
@@ -61,9 +61,9 @@ namespace CarServiceDesktop
         private void ClearForm_button_Click(object sender, EventArgs e)
         {
             ClearForm();
-            errorProvider1.Clear();
-            errorProvider2.Clear();
-            errorProvider3.Clear();
+            NameErrorProvider.Clear();
+            SecondNameErrorProvider.Clear();
+            PhoneNumberErrorProvider.Clear();
             MessageLabel.Hide();
         }
         private void ClearForm()
@@ -92,19 +92,19 @@ namespace CarServiceDesktop
             this.label_surname = new System.Windows.Forms.Label();
             this.label_phone = new System.Windows.Forms.Label();
             this.label_details = new System.Windows.Forms.Label();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.NameErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.SecondNameErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.PhoneNumberErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.MessageLabel = new System.Windows.Forms.Label();
             this.ClearFormButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NameErrorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SecondNameErrorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PhoneNumberErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // CreateUser_button
             // 
-            this.CreateUser_button.Location = new System.Drawing.Point(243, 394);
+            this.CreateUser_button.Location = new System.Drawing.Point(251, 335);
             this.CreateUser_button.Name = "CreateUser_button";
             this.CreateUser_button.Size = new System.Drawing.Size(75, 23);
             this.CreateUser_button.TabIndex = 0;
@@ -114,37 +114,37 @@ namespace CarServiceDesktop
             // 
             // Name_textbox
             // 
-            this.Name_textbox.Location = new System.Drawing.Point(152, 83);
+            this.Name_textbox.Location = new System.Drawing.Point(85, 25);
             this.Name_textbox.Name = "Name_textbox";
-            this.Name_textbox.Size = new System.Drawing.Size(166, 20);
+            this.Name_textbox.Size = new System.Drawing.Size(241, 20);
             this.Name_textbox.TabIndex = 1;
             // 
             // Surnname_textbox
             // 
-            this.Surnname_textbox.Location = new System.Drawing.Point(152, 138);
+            this.Surnname_textbox.Location = new System.Drawing.Point(85, 80);
             this.Surnname_textbox.Name = "Surnname_textbox";
-            this.Surnname_textbox.Size = new System.Drawing.Size(166, 20);
+            this.Surnname_textbox.Size = new System.Drawing.Size(241, 20);
             this.Surnname_textbox.TabIndex = 2;
             // 
             // Phone_textbox
             // 
-            this.Phone_textbox.Location = new System.Drawing.Point(152, 195);
+            this.Phone_textbox.Location = new System.Drawing.Point(85, 137);
             this.Phone_textbox.Name = "Phone_textbox";
-            this.Phone_textbox.Size = new System.Drawing.Size(166, 20);
+            this.Phone_textbox.Size = new System.Drawing.Size(241, 20);
             this.Phone_textbox.TabIndex = 3;
             // 
             // Details_textbox
             // 
-            this.Details_textbox.Location = new System.Drawing.Point(152, 248);
+            this.Details_textbox.Location = new System.Drawing.Point(85, 190);
             this.Details_textbox.Multiline = true;
             this.Details_textbox.Name = "Details_textbox";
-            this.Details_textbox.Size = new System.Drawing.Size(166, 95);
+            this.Details_textbox.Size = new System.Drawing.Size(241, 95);
             this.Details_textbox.TabIndex = 4;
             // 
             // label_name
             // 
             this.label_name.AutoSize = true;
-            this.label_name.Location = new System.Drawing.Point(100, 90);
+            this.label_name.Location = new System.Drawing.Point(33, 32);
             this.label_name.Name = "label_name";
             this.label_name.Size = new System.Drawing.Size(38, 13);
             this.label_name.TabIndex = 5;
@@ -153,7 +153,7 @@ namespace CarServiceDesktop
             // label_surname
             // 
             this.label_surname.AutoSize = true;
-            this.label_surname.Location = new System.Drawing.Point(86, 145);
+            this.label_surname.Location = new System.Drawing.Point(19, 87);
             this.label_surname.Name = "label_surname";
             this.label_surname.Size = new System.Drawing.Size(52, 13);
             this.label_surname.TabIndex = 6;
@@ -162,7 +162,7 @@ namespace CarServiceDesktop
             // label_phone
             // 
             this.label_phone.AutoSize = true;
-            this.label_phone.Location = new System.Drawing.Point(97, 202);
+            this.label_phone.Location = new System.Drawing.Point(30, 144);
             this.label_phone.Name = "label_phone";
             this.label_phone.Size = new System.Drawing.Size(41, 13);
             this.label_phone.TabIndex = 7;
@@ -171,30 +171,30 @@ namespace CarServiceDesktop
             // label_details
             // 
             this.label_details.AutoSize = true;
-            this.label_details.Location = new System.Drawing.Point(96, 248);
+            this.label_details.Location = new System.Drawing.Point(29, 190);
             this.label_details.Name = "label_details";
             this.label_details.Size = new System.Drawing.Size(42, 13);
             this.label_details.TabIndex = 8;
             this.label_details.Text = "Details:";
             // 
-            // errorProvider1
+            // NameErrorProvider
             // 
-            this.errorProvider1.ContainerControl = this;
+            this.NameErrorProvider.ContainerControl = this;
             // 
-            // errorProvider2
+            // SecondNameErrorProvider
             // 
-            this.errorProvider2.ContainerControl = this;
+            this.SecondNameErrorProvider.ContainerControl = this;
             // 
-            // errorProvider3
+            // PhoneNumberErrorProvider
             // 
-            this.errorProvider3.ContainerControl = this;
+            this.PhoneNumberErrorProvider.ContainerControl = this;
             // 
             // MessageLabel
             // 
             this.MessageLabel.AutoSize = true;
             this.MessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.MessageLabel.ForeColor = System.Drawing.Color.ForestGreen;
-            this.MessageLabel.Location = new System.Drawing.Point(113, 369);
+            this.MessageLabel.Location = new System.Drawing.Point(121, 388);
             this.MessageLabel.Name = "MessageLabel";
             this.MessageLabel.Size = new System.Drawing.Size(205, 13);
             this.MessageLabel.TabIndex = 9;
@@ -203,7 +203,7 @@ namespace CarServiceDesktop
             // 
             // ClearFormButton
             // 
-            this.ClearFormButton.Location = new System.Drawing.Point(152, 393);
+            this.ClearFormButton.Location = new System.Drawing.Point(85, 335);
             this.ClearFormButton.Name = "ClearFormButton";
             this.ClearFormButton.Size = new System.Drawing.Size(75, 23);
             this.ClearFormButton.TabIndex = 10;
@@ -215,7 +215,7 @@ namespace CarServiceDesktop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(372, 448);
+            this.ClientSize = new System.Drawing.Size(364, 419);
             this.Controls.Add(this.ClearFormButton);
             this.Controls.Add(this.MessageLabel);
             this.Controls.Add(this.label_details);
@@ -229,9 +229,9 @@ namespace CarServiceDesktop
             this.Controls.Add(this.CreateUser_button);
             this.Name = "AddUserForm";
             this.Text = "Add User";
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NameErrorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SecondNameErrorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PhoneNumberErrorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -248,9 +248,9 @@ namespace CarServiceDesktop
         private System.Windows.Forms.Label label_surname;
         private System.Windows.Forms.Label label_phone;
         private System.Windows.Forms.Label label_details;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.ErrorProvider errorProvider2;
-        private System.Windows.Forms.ErrorProvider errorProvider3;
+        private System.Windows.Forms.ErrorProvider NameErrorProvider;
+        private System.Windows.Forms.ErrorProvider SecondNameErrorProvider;
+        private System.Windows.Forms.ErrorProvider PhoneNumberErrorProvider;
         private System.Windows.Forms.Label MessageLabel;
         private System.Windows.Forms.Button ClearFormButton;
     }

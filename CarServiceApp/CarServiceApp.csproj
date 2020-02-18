@@ -65,6 +65,8 @@
     <Compile Include="ClientHelper.cs" />
     <Compile Include="ClientValidator.cs" />
     <Compile Include="EmployeeHelper.cs" />
+    <Compile Include="EmployeeValidator.cs" />
+    <Compile Include="Interfaces\IPerson.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Order.cs" />

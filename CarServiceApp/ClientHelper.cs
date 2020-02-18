@@ -33,6 +33,23 @@ namespace CarServiceApp
             throw new NotImplementedException();
         }
 
+        public static IReadOnlyCollection<Employee> GetCustomers()
+        {
+            var result = new List<Employee>();
+            var dbManager = new SqlHelper(ConfigurationManager.ConnectionStrings["connectionStringCarService"].ToString());
+            var table = dbManager.GetDataTable("select * from dbo.Customers", System.Data.CommandType.Text);
+            foreach (System.Data.DataRow row in table.Rows)
+            {
+                result.Add(new Employee
+                {
+                    Id = int.Parse(row["customerId"].ToString()),
+                    FirstName = row["customerName"].ToString(),
+                    LastName = row["customerSecondName"].ToString()
+                });
+            }
+
+            return result;
+        }
         //update
     }
 }
