@@ -1,5 +1,5 @@
 ﻿CREATE TABLE Customers (
-    customerId INT PRIMARY KEY,
+    customerId INT IDENTITY(1,1) NOT NULL,
     customerName varchar(200),
     customerSecondName varchar(200),
     customerPhone varchar(200),

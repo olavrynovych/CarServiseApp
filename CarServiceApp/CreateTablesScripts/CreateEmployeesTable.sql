@@ -1,5 +1,5 @@
 ﻿CREATE TABLE Employees (
-    employeeId INT PRIMARY KEY,
+    employeeId INT IDENTITY(1,1) NOT NULL,
     employeeName varchar(200),
     employeeSecondName varchar(200),
     employeePhone varchar(200),
