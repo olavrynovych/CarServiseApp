@@ -32,7 +32,7 @@ namespace CarServiceApp
         {
             var result = new List<Employee>();
             var dbManager = new SqlHelper(ConfigurationManager.ConnectionStrings["connectionStringCarService"].ToString());
-            var table = dbManager.GetDataTable("select * from dbo.Employees", System.Data.CommandType.Text);
+            var table = dbManager.GetDataTable("select * from dbo.Employees order by employeeSecondName", System.Data.CommandType.Text);
             foreach (System.Data.DataRow row in table.Rows)
             {
                 result.Add(new Employee 

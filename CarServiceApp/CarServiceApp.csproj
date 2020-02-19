@@ -70,6 +70,7 @@
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="OrdersHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\SqlHelper.cs" />
@@ -77,6 +78,8 @@
   <ItemGroup>
     <Content Include="CreateTablesScripts\CreateCustomersTable.sql" />
     <Content Include="CreateTablesScripts\CreateEmployeesTable.sql" />
+    <Content Include="CreateTablesScripts\CreateOrdersTable.sql" />
+    <Content Include="CreateTablesScripts\InsertOrder.sql" />
     <Content Include="CreateTablesScripts\InsertCustomer.sql" />
     <Content Include="CreateTablesScripts\InsertEmployee.sql" />
   </ItemGroup>

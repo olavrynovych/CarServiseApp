@@ -15,5 +15,5 @@ BEGIN
 VALUES
 	(@employeeName, @employeeSecondName, @employeePhone, @description, getdate())
 	SET @id=SCOPE_IDENTITY()
-	RETURN @id
+	SELECT @id
 END

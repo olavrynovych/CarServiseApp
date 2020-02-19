@@ -22,7 +22,7 @@ namespace CarServiceApp
             parameters.Add(dbManager.CreateParameter("@id", client.Id, System.Data.DbType.Int32));
             //parameters.Add(helper.CreateParameter("@createdAt", client.CreatedAt, System.Data.DbType.DateTime));
 
-            int lastId = 0;//Wrong value, how to get value to code from sproc????
+            int lastId = 0;
             dbManager.Insert("InsertCustomer", System.Data.CommandType.StoredProcedure, parameters.ToArray(), out lastId);
 
             Console.WriteLine($"INSERTED ID: {lastId}.");
@@ -37,7 +37,7 @@ namespace CarServiceApp
         {
             var result = new List<Employee>();
             var dbManager = new SqlHelper(ConfigurationManager.ConnectionStrings["connectionStringCarService"].ToString());
-            var table = dbManager.GetDataTable("select * from dbo.Customers", System.Data.CommandType.Text);
+            var table = dbManager.GetDataTable("select * from dbo.Customers order by customerSecondName", System.Data.CommandType.Text);
             foreach (System.Data.DataRow row in table.Rows)
             {
                 result.Add(new Employee

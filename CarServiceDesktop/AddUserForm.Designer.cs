@@ -37,7 +37,7 @@ namespace CarServiceDesktop
             ;
             if (!ClientValidator.ValidateFirstOrSecondName(clientInfo.FirstName))
             {
-                NameErrorProvider.SetError(Name_textbox, "Name is not correct.");//rename
+                NameErrorProvider.SetError(Name_textbox, "Name is not correct.");
             }
             if (!ClientValidator.ValidateFirstOrSecondName(clientInfo.LastName))
             {
