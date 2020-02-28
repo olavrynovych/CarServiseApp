@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CarServiceApp
 {
-    public class EmployeeHelper
+    public class EmployeeRepository
     {
         public static void InsertEmployeeInfo(Employee employee)
         {
@@ -22,7 +22,7 @@ namespace CarServiceApp
             parameters.Add(dbManager.CreateParameter("@id", employee.Id, System.Data.DbType.Int32));
             //parameters.Add(helper.CreateParameter("@createdAt", client.CreatedAt, System.Data.DbType.DateTime));
 
-            int lastId = 0;//Wrong value, how to get value to code from sproc????
+            int lastId = 0;
             dbManager.Insert("InsertEmployee", System.Data.CommandType.StoredProcedure, parameters.ToArray(), out lastId);
 
             Console.WriteLine($"INSERTED ID: {lastId}.");

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CarServiceApp
 {
-    public class OrdersHelper
+    public class OrdersRepository
     {
         public static void InsertOrderInfo(Order order)
         {

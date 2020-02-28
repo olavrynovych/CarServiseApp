@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CarServiceApp
 {
-    public class ClientHelper
+    public class ClientRepository
     {
         public static void InsertClientInfo(Client client)
         {

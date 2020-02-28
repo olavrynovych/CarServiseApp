@@ -30,12 +30,8 @@ namespace CarServiceApp
 
         public static bool ValidateFirstOrSecondName(string name)
         {
-            if (name.Equals(string.Empty) || name.Length < 3)
-            {
-                return false;
-            }
+            return !(name.Equals(string.Empty) || name.Length < 3) ;
 
-            return true;
         }
 
         public static bool ValidatePhoneNumber(string phone, bool IsRequired)
